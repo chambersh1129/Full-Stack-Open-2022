@@ -1,74 +1,32 @@
+import { useState } from 'react'
 
-function Header(props) {
+const Title = ({ text }) => <h1>{text}</h1>
+
+const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
+
+const PrintVar = ({ text, value }) => <p>{text} {value}</p>
+
+const App = () => {
+  // save clicks of each button to its own state
+  const [good, setGood] = useState(0)
+  const textGood = "good"
+  const [neutral, setNeutral] = useState(0)
+  const textNeutral = "neutral"
+  const [bad, setBad] = useState(0)
+  const textBad = "bad"
+
   return (
-    <>
-      <h1>{props.course.name}</h1>
-    </>
+    <div>
+      <Title text="give feedback" />
+      <Button onClick={() => setGood(good + 1)} text={textGood} />
+      <Button onClick={() => setNeutral(neutral + 1)} text={textNeutral} />
+      <Button onClick={() => setBad(bad + 1)} text={textBad} />
+      <Title text="statistics" />
+      <PrintVar text={textGood} value={good} />
+      <PrintVar text={textNeutral} value={neutral} />
+      <PrintVar text={textBad} value={bad} />
+    </div>
   )
 }
 
-function Part(props) {
-  return (
-    <>
-      <p>
-        {props.part.name} {props.part.exercises}
-      </p>
-    </>
-  )
-}
-
-function Content(props) {
-  const [part1, part2, part3] = props.course.parts
-
-  return (
-    <>
-      <Part part={part1} />
-      <Part part={part2} />
-      <Part part={part3} />
-    </>
-  )
-}
-
-function Total(props) {
-  let exercise_count = 0
-  props.course.parts.forEach(part => {
-    exercise_count += part.exercises
-  })
-
-  return (
-    <>
-      <p>Number of exercises {exercise_count}</p>
-    </>
-  )
-}
-
-function App() {
-
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
-  }
-
-  return (
-    <>
-      <Header course={course} />
-      <Content course={course} />
-      <Total course={course} />
-    </>
-  );
-}
-
-export default App;
+export default App
