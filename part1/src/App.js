@@ -7,6 +7,14 @@ const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 const Statistics = ({ good, textGood, neutral, textNeutral, bad, textBad }) => {
   const all = good + neutral + bad
 
+  if (all === 0) {
+    return (
+      <>
+        No feedback given
+      </>
+    )
+  }
+
   return (
     <>
       <div>{textGood} {good}</div>
