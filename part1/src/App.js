@@ -4,16 +4,17 @@ const Title = ({ text }) => <h1>{text}</h1>
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 
-const PrintVar = ({ text, value }) => <p>{text} {value}</p>
-
-const Statistics = ({ good, neutral, bad }) => {
+const Statistics = ({ good, textGood, neutral, textNeutral, bad, textBad }) => {
   const all = good + neutral + bad
 
   return (
     <>
-      <p>all {all}</p>
-      <p>average {((1 * good) + (-1 * bad)) / all}</p>
-      <p>positive {good / all}%</p>
+      <div>{textGood} {good}</div>
+      <div>{textNeutral} {neutral}</div>
+      <div>{textBad} {bad}</div>
+      <div>all {all}</div>
+      <div>average {((1 * good) + (-1 * bad)) / all}</div>
+      <div>positive {(good / all) * 100}%</div>
     </>
   )
 }
@@ -34,10 +35,7 @@ const App = () => {
       <Button onClick={() => setNeutral(neutral + 1)} text={textNeutral} />
       <Button onClick={() => setBad(bad + 1)} text={textBad} />
       <Title text="statistics" />
-      <PrintVar text={textGood} value={good} />
-      <PrintVar text={textNeutral} value={neutral} />
-      <PrintVar text={textBad} value={bad} />
-      <Statistics good={good} neutral={neutral} bad={bad} />
+      <Statistics good={good} textGood={textGood} neutral={neutral} textNeutral={textNeutral} bad={bad} textBad={textBad} />
     </div>
   )
 }
