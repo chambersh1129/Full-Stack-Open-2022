@@ -4,7 +4,14 @@ const Title = ({ text }) => <h1>{text}</h1>
 
 const Button = ({ onClick, text }) => <button onClick={onClick}>{text}</button>
 
-const StatisticsLine = ({ text, value }) => <div>{text} {value}</div>
+const StatisticsLine = ({ text, value }) => {
+  return (
+    <tr>
+      <td>{text}</td>
+      <td>{value}</td>
+    </tr>
+  )
+}
 
 const Statistics = ({ good, textGood, neutral, textNeutral, bad, textBad }) => {
   const all = good + neutral + bad
@@ -21,12 +28,17 @@ const Statistics = ({ good, textGood, neutral, textNeutral, bad, textBad }) => {
 
   return (
     <>
-      <StatisticsLine text={textGood} value={good} />
-      <StatisticsLine text={textNeutral} value={neutral} />
-      <StatisticsLine text={textBad} value={bad} />
-      <StatisticsLine text="all" value={all} />
-      <StatisticsLine text="average" value={average} />
-      <StatisticsLine text="positive" value={positive} />
+      <table>
+        <tbody>
+          <StatisticsLine text={textGood} value={good} />
+          <StatisticsLine text={textNeutral} value={neutral} />
+          <StatisticsLine text={textBad} value={bad} />
+          <StatisticsLine text="all" value={all} />
+          <StatisticsLine text="average" value={average} />
+          <StatisticsLine text="positive" value={positive} />
+        </tbody>
+      </table>
+
     </>
   )
 }
