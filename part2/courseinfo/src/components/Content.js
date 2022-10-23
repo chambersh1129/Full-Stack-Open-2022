@@ -10,7 +10,7 @@ const SumOfExercises = ({ parts }) => {
     const total = parts.reduce((s, p) => s + p.exercises, 0)
     return (
         <>
-            <p>total of {total} exercises</p>
+            <p><strong>total of {total} exercises</strong></p>
         </>
     )
 }
